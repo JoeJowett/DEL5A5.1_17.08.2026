@@ -3,16 +3,32 @@ import pandas as pd
 
 # define functions
 
-# main code
 # import customers csv
 customers = pd.read_csv("Data/03_Library SystemCustomers.csv")
+# import books csv
+books = pd.read_csv("Data/03_Library Systembook.csv")
+
+
+# check for duplicates
+def check_duplicates(books):
+    duplicates = books[books.duplicated()]
+
+    if duplicates.empty:
+        print("No duplicates found.")
+    else:
+        print("Duplicates found:")
+        print(duplicates)
+
+    return duplicates
+
+# main code
+
 # drop blanks
 customers = customers.dropna()
 # export clean version
 customers.to_csv("Data/03_Library SystemCustomers_clean.csv, index=False")
 
-# import books csv
-books = pd.read_csv("Data/03_Library Systembook.csv")
+
 # drop blanks
 books = books.dropna()
 # remove quotations and convert to datetime
@@ -34,6 +50,7 @@ books['Days allowed to borrow'] = pd.to_numeric(
     books['Days allowed to borrow'],
    errors='coerce' 
 ) * 7
+
 # calculate the difference between checkout and return
 def calculate_days_difference(row):
     return (row['Book Returned'] - row['Book checkout']).days
