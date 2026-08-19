@@ -1,0 +1,13 @@
+services:
+
+  csv-cleaner:
+    build:
+      context: .
+      dockerfile: Dockerfile.cleaner
+
+  sql-loader:
+    build:
+      context: .
+      dockerfile: Dockerfile.loader
+    depends_on:
+      - csv-cleaner
