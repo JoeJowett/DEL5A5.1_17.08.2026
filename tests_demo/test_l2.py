@@ -1,27 +1,32 @@
 import unittest
-from calculator import calculator
+import pandas as pd
 
-class TestOperations(unittest.TestCase):
+from csv_cleaner import calculate_days_difference
 
-    def test_sum(self):
-        calculation = calculator(8,2)
-        answer = calculation.get_sum()
-        self.assertEqual(answer, 10, "The sum is wrong!")
+class TestBookFunctions(unittest.TestCase):
+    def test_calculate_days_difference(self):
+        row = pd.Series({
+            'Book Returned': pd.Timestamp('2026-08-15'),
+            'Book checkout': pd.Timestamp('2026-08-01')
+        })
 
-    def test_minus(self):
-        calculation = calculator(8,2)
-        answer = calculation.get_minus()
-        self.assertEqual(answer, 6, "The sum is wrong!")
+        result = calculate_days_difference(row)
 
-    def test_multiple(self):
-        calculation = calculator(8,2)
-        answer = calculation.get_multiple()
-        self.assertEqual(answer, 16, "The sum is wrong!")
+        self.assertEqual(result, 14)
 
-    def test_division(self):
-        calculation = calculator(8,2)
-        answer = calculation.get_division()
-        self.assertEqual(answer, 4, "The sum is wrong!")
+    def test_book_is_on_time(self):
+        days_borrowed = 14
 
-if __name__ == "__main__":
+        result = 'Overdue' if days_borrowed > 14 else 'On time'
+
+        self.assertEqual(result, 'On time')
+
+    def test_book_is_overdue(self):
+        days_borrowed = 15
+
+        result = 'Overdue' if days_borrowed > 14 else 'On time'
+
+        self.assertEqual(result, 'Overdue')
+
+if __name__ == '__main__':
     unittest.main()
