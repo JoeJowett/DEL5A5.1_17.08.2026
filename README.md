@@ -21,11 +21,11 @@ Provides data for analysis and visualisation in Power BI.
 
 The overall pipeline is:
 
-![Solution Architecture](Screenshots/ProposedArchitectureSolution.png)
+![Solution Architecture](Day2/Screenshots/ProposedArchitectureSolution.png)
 
 The proposed Power BI report:
 
-![Power BI Report](Screenshots/ProposedPowerBIReport.png)
+![Power BI Report](Day2/Screenshots/ProposedPowerBIReport.png)
 
 2. Choices made and why:
 
