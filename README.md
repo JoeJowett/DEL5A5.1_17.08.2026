@@ -21,11 +21,11 @@ The objective of the solution is to create a repeatable data pipeline that:
 
 ### Solution Architecture
 
-![Solution Architecture](Screenshots/ProposedArchitectureSolution.png)
+![Solution Architecture](Day2/Screenshots/ProposedArchitectureSolution.png)
 
 ### Proposed Power BI Report
 
-![Power BI Report](Screenshots/ProposedPowerBIReport.png)
+![Power BI Report](Day2/Screenshots/ProposedPowerBIReport.png)
 
 
 ## 2. Choices Made and Why
