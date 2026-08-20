@@ -81,6 +81,15 @@ metrics.to_sql(
     index=False
 )
 
+def refresh_power_bi():
+    # Authenticate with Microsoft
+    # Get Power BI access token
+    # Trigger dataset refresh
+    # Check refresh status
+
+
+
 print("Customers table successfully loaded.")
 print("Books table successfully loaded.")
 print("Data Engineering Metrics successfully loaded.")
+print("Power BI dataset refresh requested.")

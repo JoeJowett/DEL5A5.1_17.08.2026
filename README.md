@@ -32,8 +32,8 @@ The objective of the solution is to create a repeatable data pipeline that:
 
 - **Python/Pandas** – efficient for CSV processing and data cleaning.
 - **SQL Server** – provides structured relational storage and allows SQL querying.
-- **Docker** – provides a reproducible environment for running the Python pipeline.
-- **Docker volumes** – allow cleaned files to persist between containers.
+- **Docker** – provides a consistent, isolated and reproducible environment for running the Python data pipeline. This reduces dependency issues and makes it easier to run the solution on another machine without manually installing the required Python packages.
+- **Docker volumes** – provide persistent storage for the cleaned CSV files, allowing them to be shared between containers and remain available after a container is removed.
 - **Power BI** – provides visualisation and reporting.
 - **Git/GitHub** – provides version control and project tracking.
 
