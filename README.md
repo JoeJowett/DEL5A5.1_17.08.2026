@@ -101,9 +101,10 @@ Run:
 python csv_cleaner.py
 
 python sql_loader.py
+```
 
-## csv_cleaner.py creates the cleaned CSV files and metrics.
+### csv_cleaner.py creates the cleaned CSV files and metrics.
 
-## Then sql_loader.py loads the cleaned datasets into tables in the SQL Server
+### Then sql_loader.py loads the cleaned datasets into tables in the SQL Server
 
-## Then Power BI collects the data to provide visuals.
+### Then Power BI collects the data to provide visuals.
