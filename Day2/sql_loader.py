@@ -3,7 +3,10 @@ from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 from pathlib import Path
 
+# -------------------------
 # SQL Server details
+# -------------------------
+
 server = 'localhost'
 database = 'library'
 
@@ -15,15 +18,24 @@ connection_string = (
     'TrustServerCertificate=yes;'
 )
 
-connection_url = 'mssql+pyodbc:///?odbc_connect=' + quote_plus(connection_string)
+connection_url = (
+    'mssql+pyodbc:///?odbc_connect='
+    + quote_plus(connection_string)
+)
 
 engine = create_engine(connection_url)
 
-# Find the Data folder relative to this Python script
+# -------------------------
+# Find Data folder
+# -------------------------
+
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / 'Data'
 
+# -------------------------
 # Load cleaned CSV files
+# -------------------------
+
 customers = pd.read_csv(
     DATA_DIR / '03_Library SystemCustomers_clean.csv'
 )
@@ -32,7 +44,22 @@ books = pd.read_csv(
     DATA_DIR / '03_Library Systembook_cleaner.csv'
 )
 
-# Add dataframes to SQL Server
+metrics = pd.read_csv(
+    DATA_DIR / 'data_engineering_metrics.csv'
+)
+
+# -------------------------
+# Convert metric values
+# -------------------------
+
+# The Value column contains both numbers and text
+# such as "Success", so keep it as text.
+metrics['Value'] = metrics['Value'].astype(str)
+
+# -------------------------
+# Load data into SQL Server
+# -------------------------
+
 customers.to_sql(
     'Customers',
     engine,
@@ -47,4 +74,13 @@ books.to_sql(
     index=False
 )
 
-print("Customers and Books successfully added to SQL Server")
+metrics.to_sql(
+    'DataEngineeringMetrics',
+    engine,
+    if_exists='append',
+    index=False
+)
+
+print("Customers table successfully loaded.")
+print("Books table successfully loaded.")
+print("Data Engineering Metrics successfully loaded.")
